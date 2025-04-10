@@ -1,0 +1,35 @@
+.board{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid red;
+    font-family: tahoma;
+}
+
+.column{
+    flex: 1;
+    padding: 1rem;
+    min-height: 200px;
+
+    background-color: grey;
+
+    border: 2px dashed #ccc;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.task{
+    background: #f4f4f4;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    cursor: move;
+}
+
+/* .drop-zone {
+    border: 2px dashed #ccc;
+    transition: border-color 0.2s, background-color 0.2s;
+  } */
+  
+  .column.active {
+    border-color: #4caf50;
+    background-color: #e8f5e9;
+  }
