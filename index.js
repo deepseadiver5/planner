@@ -1,63 +1,35 @@
-const tasks = document.querySelectorAll('.task');
-const columns = document.querySelectorAll('.column');
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
 
-let draggedTask = null;
+const app = express();
+//add server
 
-// iterates over task items
-// adds eventlisteners for dragstat and dragend
-// simple change of style and assign task html element to variable
+app.use('view-engine', 'ejs');
+app.use('views', path.join(__dirname, 'views'));
 
-tasks.forEach(task => {
-    task.addEventListener("dragstart", () => {
-        draggedTask = task;
-        task.style.opacity = '0.5';
+// set json
+// set middleware to read form data
+// use for static css and jss
 
-    });
-    task.addEventListener('dragend', () => {
-    draggedTask = null;
-    task.style.opacity = '1';
-    })
-});
+// create route for the homepage
 
-// iterates through .columns
-// adds eventlisteners for dragover, drop and dragleave
-// adds class for transition
+// create route for creating a new task
+// sends json back to the client side to create a new div
 
-columns.forEach(column => {
-    column.addEventListener('dragover', e => {
-        column.classList.add("active");
-        e.preventDefault(); // necessary to allow drop
-    });
-    column.addEventListener('drop', e => {
-        if(draggedTask) {
-            column.classList.remove("active");
-            column.appendChild(draggedTask)
-        }
-    });
-    column.addEventListener('dragleave', e => {
-        if(draggedTask) {
-            column.classList.remove("active");
-        }
-    });
-});
+// create route for editing a task name / other attribs
+// updates database with form data
+// sends back new object to be stored in front-end
 
-// need a data structure to allow this to persist
+// create route for updating status of task
 
-// need a navbar for different todo lists
+// create route for deleting task
 
-// add a button to each to do list - new item
-// creates new item in the data base
-// have different attributes in the list
-// attribs - start/end - colour picker from 6-7
-// checkboxes - filters???
-// attach an image - person - attach files / note
-// add a href web link
-// user accont - log in and out
-// different database for each user
-// assign task to a person
-// select different backgrounds - gradients / styles etc
-// different views
-// navbar
+// create route for viewing a task in more detail
 
-// left hand sidebar - My lists Personal Home Books
-// filters for - today / next 7 days / all tasks
+// the navbar would be front-end - anchor tags fine - take you to pages
+
+// to do lists would be requests that return ejs pages that include all the different tasks stored in the database as divs - this data also needs to be passed to the front-end...or does it - maybe only for adding tasks and data...or I think the front end can do this...might be better to render on back-end initially then serve to avoid delays/flicker
+
+// side-bar - used to store different sets of lists - to filter lists
+// maybe the same database but different tags - e.g personal, work, home improvement etc...cam also view all - ask ChatGPT best approach. 
