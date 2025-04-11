@@ -31,6 +31,10 @@ columns.forEach(column => {
     column.addEventListener('drop', e => {
         if(draggedTask) {
             // send message to a server
+            // run an async function
+            // send id of task and data status of column
+            // use column.dataset.status
+            updateTaskStatus(draggedTask.dataset.id, column.dataset.status);
             column.classList.remove("active");
             column.appendChild(draggedTask)
         }
@@ -41,6 +45,15 @@ columns.forEach(column => {
         }
     });
 });
+
+async function updateTaskStatus(id, updatedStatus) {
+        const response = await axios.patch(`/tasks/${id}/edit`, {
+            id,
+            updatedStatus
+        });
+        console.log(response);
+    
+}
 
 // need a data structure to allow this to persist
 

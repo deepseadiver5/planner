@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div class="board">
+       
+       
+        <div class="column" id="todo" data-status="todo">
+            <h3>To do</h3>
+            <button>New Task</button>
+            <% for(let task of tasks) { if(task.status=='todo' ) { %>
+                <div class="task" draggable="true" data-id="<%=task.id%>">
+                    <%=task.name%>
+                </div>
+                <%}}%>
+        </div>
+        
+        <div class="column" id="doing" data-status="doing">
+            <h3>Doing</h3>
+            <% for(let task of tasks) { if(task.status=='doing' ) { %>
+                <div class="task" draggable="true" data-id="<%=task.id%>"
+                    ">
+                    <%=task.name%>
+                </div>
+                <%}}%>
+        </div>
+
+        <div class="column" id="done" data-status="done">
+            <h3>Done</h3>
+            <% for(let task of tasks) { if(task.status=='done' ) { %>
+                <div class="task" draggable="true" data-id="<%=task.id%>"">
+                    <%=task.name%>
+                </div>
+                <%}}%>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+
+</body>
+
+</html>

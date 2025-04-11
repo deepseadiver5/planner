@@ -2,11 +2,42 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
+const Task = require('./model/task');
+
 const app = express();
 //add server
 
-app.use('view-engine', 'ejs');
-app.use('views', path.join(__dirname, 'views'));
+mongoose.connect('mongodb://127.0.0.1:27017/plannerApp')
+    .then((() => console.log('Mongo Connected!')))
+    .catch((e) => {
+        console.log('Mongo Connection Error!')
+        console.log(e)
+    });
+
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/tasks', async (req, res) => {
+    const tasks = await Task.find({});
+    res.render('index', {tasks: tasks});
+})
+
+// app.patch takes route from the app.js axios request which sends the task id and new status for the db to be updated with
+app.patch('/tasks/:id/edit', async (req, res) => {
+    const {id, updatedStatus} = req.body;
+    console.log(req.body);
+    const response = await Task.findByIdAndUpdate(id, {status: updatedStatus},{returnDocument: 'after'});
+    console.log(response);
+})
+
+
 
 // set json
 // set middleware to read form data
@@ -33,3 +64,7 @@ app.use('views', path.join(__dirname, 'views'));
 
 // side-bar - used to store different sets of lists - to filter lists
 // maybe the same database but different tags - e.g personal, work, home improvement etc...cam also view all - ask ChatGPT best approach. 
+
+app.listen(3000, () => {
+    console.log('Listening on port 3000');
+})

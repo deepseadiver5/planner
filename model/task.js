@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const taskScheme = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -16,6 +16,6 @@ const taskScheme = new mongoose.Schema({
 
 const Task = mongoose.model('Task', taskSchema);
 
-modules.exports = Task;
+module.exports = Task;
 
 // relational database - would need to make Task a document??? and store in relation to different users
