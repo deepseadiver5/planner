@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const seedDatabase = require(path.join(__dirname, 'seed'));
+console.log(path.join(__dirname, 'seed'));
 
 const Task = require('./model/task');
 
@@ -35,6 +37,33 @@ app.patch('/tasks/:id/edit', async (req, res) => {
     console.log(req.body);
     const response = await Task.findByIdAndUpdate(id, {status: updatedStatus},{returnDocument: 'after'});
     console.log(response);
+    res.status(200).json({ success: true});
+})
+
+app.delete('/tasks/delete', async (req, res) => {
+    const { id } = req.body;
+    console.log(req.body);
+    const response = await Task.findByIdAndDelete(id);
+    console.log(response);
+    res.status(200).json({ success: true, deletedTask: response });
+})
+
+app.get('/tasks/seed', async (req, res) => {
+    const response = await seedDatabase();
+    console.log(response);
+    res.status(200).json({ success: true});
+})
+
+app.get('/tasks/deleteall', async (req, res) => {
+    const response = await Task.deleteMany();
+    console.log(response);
+    res.status(200).json({ success: true});
+})
+
+app.get('/tasks/new', async (req, res) => {
+    const response = await Task.insertOne({name: 'new task', status: 'todo'});
+    console.log(response);
+    res.status(200).json({ success: true});
 })
 
 

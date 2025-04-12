@@ -16,10 +16,11 @@
        
         <div class="column" id="todo" data-status="todo">
             <h3>To do</h3>
-            <button>New Task</button>
+            <button id="createNewTask">New Task</button>
             <% for(let task of tasks) { if(task.status=='todo' ) { %>
                 <div class="task" draggable="true" data-id="<%=task.id%>">
                     <%=task.name%>
+                    <button class="delete-btn">Delete</button>
                 </div>
                 <%}}%>
         </div>
@@ -30,6 +31,7 @@
                 <div class="task" draggable="true" data-id="<%=task.id%>"
                     ">
                     <%=task.name%>
+                    <button class="delete-btn">Delete</button>
                 </div>
                 <%}}%>
         </div>
@@ -39,12 +41,16 @@
             <% for(let task of tasks) { if(task.status=='done' ) { %>
                 <div class="task" draggable="true" data-id="<%=task.id%>"">
                     <%=task.name%>
+                    <button class="delete-btn">Delete</button>
                 </div>
                 <%}}%>
         </div>
     </div>
+    <button id="seed">Seed Data</button>
+    <button id="deleteall">Delete All</button>
 
     <script src="/app.js"></script>
+    <script src="/crud-buttons.js"></script>
 
 </body>
 
