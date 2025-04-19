@@ -1,4 +1,7 @@
-// loop through all delete buttons class
+//// loop through all delete buttons class
+
+// add edit function - could create a form and then monitor it for ipnut so that th div in the column is updated in real time...with the form hidden so it just looks like you're editing the task
+
 const seed = document.querySelector('#seed');
 const deleteAll = document.querySelector('#deleteall');
 const createNewTask = document.querySelector('#createNewTask');
@@ -22,16 +25,21 @@ const deleteTask = async function(taskId, btnParent) {
     console.log(btnParent);
     btnParent.remove();
     console.log(response);
+  
 }
 
 seed.addEventListener('click', async function(){
     const response = await axios.get('/tasks/seed');
     console.log(response);
+    // instead of this, you could manually delete all the taks if the response comes back
+    window.location.href = '/tasks';
 })
 
 deleteAll.addEventListener('click', async function(){
     const response = await axios.get('/tasks/deleteall');
     console.log(response);
+        // instead of this, you could manually delete all the taks if the response comes back
+    window.location.href = '/tasks';
 })
 
 createNewTask.addEventListener('click', async function(){

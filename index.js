@@ -55,9 +55,17 @@ app.get('/tasks/seed', async (req, res) => {
 })
 
 app.get('/tasks/deleteall', async (req, res) => {
-    const response = await Task.deleteMany();
-    console.log(response);
-    res.status(200).json({ success: true});
+    try
+    {
+        const response = await Task.deleteMany();
+        console.log(response);
+        res.redirect('/tasks');
+    }
+    catch(e){
+        console.error(e);
+        res.status(500).json({success: false, error: 'An error occurred while deleting tasks'});
+    }
+    
 })
 
 app.get('/tasks/new', async (req, res) => {

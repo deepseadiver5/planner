@@ -1,35 +1,90 @@
-.board{
+body {
+    height: 100vh;
+    background-image: url('/Images/ben-lockwood-wF_ubMuvDiw-unsplash.jpg');
+     
+        background-size: cover;      /* Makes it cover the whole div */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat;/* Prevents tiling */
+        height: 100vh;               /* Give it some height */
+      
+}
+
+h3{
+    font-size: 1.75rem;
+    color: white;
+    margin: 10px 0;
+}
+
+#container{
+    display: flex;
+}
+
+#sidebar{
+    flex: 1;
+    height: 100vh;
+    min-width: 150px;
+    background-color: white;
+    color: black;
+}
+
+button{
+    color: white;
+    border-radius: 5px;
+    border: none;
+    background: rgb(42, 123, 155);
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    align-content: right;
+    /* margin-inline-start: 25px; */
+}
+
+.board {
     display: flex;
     gap: 1rem;
     padding: 1rem;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     font-family: tahoma;
+    /* background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%); */
+    flex: 5;
 }
 
-.column{
+.column {
+    border-radius: 20px;
     flex: 1;
     padding: 1rem;
     min-height: 200px;
 
-    background-color: grey;
+    /* background-color: rgb(245, 245, 245, 30%); */
 
-    border: 2px dashed #ccc;
+    /* border: 2px solid #ccc; */
     transition: border-color 0.2s, background-color 0.2s;
 }
 
-.task{
-    background: #f4f4f4;
+.task {
+    color: white;
+    background:#2e2d34;
+    border-radius: 5px;
     margin-bottom: 0.5rem;
-    padding: 0.5rem;
+    padding: 1rem;
     cursor: move;
+    font-weight: 100;
+    text-transform: capitalize;
+    font-size: 0.9rem;
+
+}
+
+.task:hover {
+    background-color: #f4f4f4ff;    
+    box-shadow: 0 0 10px white;
 }
 
 /* .drop-zone {
     border: 2px dashed #ccc;
     transition: border-color 0.2s, background-color 0.2s;
   } */
-  
-  .column.active {
-    border-color: #4caf50;
-    background-color: #e8f5e9;
-  }
+
+.column.active {
+    background-color: rgb(245, 245, 245, 60%);
+}
