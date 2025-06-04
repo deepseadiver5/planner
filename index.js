@@ -1,13 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const AppError = require('./apperror');
 const path = require('path');
 const seedDatabase = require(path.join(__dirname, 'seed'));
+
+const engine = require('ejs-mate');
+
 console.log(path.join(__dirname, 'seed'));
 
 const Task = require('./model/task');
 
 const app = express();
 //add server
+
+app.engine('ejs', engine);
 
 mongoose.connect('mongodb://127.0.0.1:27017/plannerApp')
     .then((() => console.log('Mongo Connected!')))
@@ -29,6 +35,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/tasks', async (req, res) => {
     const tasks = await Task.find({});
     res.render('index', {tasks: tasks});
+})
+
+app.get('/tasks/error', (req, res) => {
+    throw new AppError('You got the wrong page buddy', 401);
+} )
+
+app.get('/tasks/errorasync', async (req, res, next) => {
+    const task = await Task.findById('661daec42b8a7d001f23c999');
+    if(!task){
+        throw new AppError('No task found', 404);
+    }
+    res.send(task);
 })
 
 // app.patch takes route from the app.js axios request which sends the task id and new status for the db to be updated with
@@ -74,7 +92,10 @@ app.get('/tasks/new', async (req, res) => {
     res.status(200).json({ success: true});
 })
 
-
+app.use((err, req, res, next) => {
+    const {status = 500, message = 'Something went wrong'} = err;
+    res.status(status).send(message);
+})
 
 // set json
 // set middleware to read form data

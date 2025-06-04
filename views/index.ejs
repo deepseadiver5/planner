@@ -1,88 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('./layouts/boilerplate') -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <div class="row gx-4">
+        <% const statuses=['todo', 'doing' , 'done' ]; %>
 
-</head>
+            <% for (let status of statuses) { %>
+                <div class="col-4 px-5 column py-3" id="<%= status %>" data-status="<%= status %>">
+                    <div class="p-3 bg-body-secondary rounded bg-opacity-50">
+                        <h4 class="fw-light text-dark letter-spacing-loose">
+                            <%= status.charAt(0).toUpperCase() + status.slice(1) %>
+                        </h4>
 
-<body>
-    <div id="container">
-        <div id="sidebar">
-            <ul id="nav">
-                <!-- This could be a start page - like Procreate -->
-                <li class="navItem">New List</li>
-                <li class="navItem">Save List</li>
-                <li class="navItem">Load List</li>
-                <li class="navItem">Undo</li>
-                <li class="navItem">Redo</li>
-                <li class="navItem">Show all lists</li>
-            </ul>
-            
-            <ul id="tags">
-                <h3>Filters</h3>
-                <li class="tagItem"><a href="tasks/filter?=1">Personal</a></li>
-                <li class="tagItem"><a href="tasks/filter?=2">Work</a></li>
-                <li class="tagItem"><a href="tasks/filter?=3">Financial</a></li>
-                <li class="tagItem"><a href="tasks/filter?=4">Home Improvement</a></li>
-                <li class="tagItem"><a href="tasks/filter?=5">Social</a></li>
-                <li class="tagItem"><a href="tasks/filter?=6">Events</a></li>
-                <!-- add item button -->
-            </ul>
-            <!-- dev tools - option to show and hide these -->
-            <button id="seed">Seed Data</button>
-            <button id="deleteall">Delete All</button>
-            <button id="createNewTask">New Task</button>
-            <button id="createNewTask">New Task</button>
-        </div>
-
-        <div class="board">
-
-            <div class="column" id="todo" data-status="todo">
-                <h3>To do</h3>
-                
-                <% for(let task of tasks) { if(task.status=='todo' ) { %>
-                    <div class="task" draggable="true" data-id="<%=task.id%>">
-                        <%=task.name%>
-                            <button class="delete-btn">D</button>
-                            <button class="editbtn">E</button>
+                        <% for (let task of tasks) { if (task.status===status) { %>
+                            <%- include('./partials/taskCard', { task }) %>
+                                <% }} %>
+                        <h5 class="fw-light text-dark letter-spacing-tight">
+                            + Add a task
+                        </h5>
                     </div>
-                    <%}}%>
-            </div>
-
-            <div class="column" id="doing" data-status="doing">
-                <h3>Doing</h3>
-                <% for(let task of tasks) { if(task.status=='doing' ) { %>
-                    <div class="task" draggable="true" data-id="<%=task.id%>" ">
-                        <%=task.name%>
-                        <button class=" delete-btn">D</button>
-                        <button class="editbtn">E</button>
-                    </div>
-                    <%}}%>
-            </div>
-
-            <div class="column" id="done" data-status="done">
-                <h3>Done</h3>
-                <% for(let task of tasks) { if(task.status=='done' ) { %>
-                    <div class="task" draggable="true" data-id="<%=task.id%>"">
-                        <%=task.name%>
-                        <button class="delete-btn">D</button>
-                        <button class="editbtn">E</button>
-                    </div>
-                    <%}}%>
-            </div>
-        </div>
+                </div>
+                <% } %>
     </div>
-
-
 
     <script src="/app.js"></script>
     <script src="/crud-buttons.js"></script>
-
-</body>
-
-</html>

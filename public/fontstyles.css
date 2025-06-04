@@ -1,0 +1,15 @@
+.letter-spacing-tight {
+  letter-spacing: -0.5px;
+}
+
+.letter-spacing-loose {
+  letter-spacing: 1px;
+}
+
+.tight-line {
+  line-height: 1.2;
+}
+
+.loose-line {
+  line-height: 1.4;
+}

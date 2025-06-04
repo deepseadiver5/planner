@@ -46,6 +46,7 @@ createNewTask.addEventListener('click', async function(){
     const response = await axios.get('/tasks/new');
     console.log(response);
     // use the response object to create a new div without having to refresh the page
+    window.location.href = '/tasks';
 })
 
 

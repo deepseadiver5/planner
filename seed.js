@@ -15,7 +15,7 @@ const seedDatabase = async function(){
         { name: 'take out rubbish', status: 'todo' },
         { name: 'cancel audible', status: 'todo' },
         { name: 'feed Tess', status: 'todo' },
-        { name: 'buy new fridge', status: 'doing' },
+        { name: 'buy new fridge and take the old one to the skip', status: 'doing' },
         { name: 'put house on market', status: 'doing' },
         { name: 'buy highchairs', status: 'done' },
         { name: 'use massage voucher', status: 'done' },

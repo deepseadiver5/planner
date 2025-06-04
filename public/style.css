@@ -1,7 +1,13 @@
+/* 00FF9C
+B6FFA1
+FEFFA7
+FFE700
+ */
+
 body {
     height: 100vh;
-    background-image: url('/Images/ben-lockwood-wF_ubMuvDiw-unsplash.jpg');
-     
+    /* background-image: url('/Images/ben-lockwood-wF_ubMuvDiw-unsplash.jpg'); */
+        background-color: black;
         background-size: cover;      /* Makes it cover the whole div */
         background-position: center; /* Centers the image */
         background-repeat: no-repeat;/* Prevents tiling */
@@ -11,8 +17,13 @@ body {
 
 h3{
     font-size: 1.75rem;
-    color: white;
+    /* color: white; */
     margin: 10px 0;
+
+      color: black;
+  /* text-shadow: 0 0 1px #C5172E, 0 0 1px #C5172E; */
+
+  text-shadow: 0 0 4px #FFE700, 0 0 10px #FFE700, 0 0 20px #FFE700;
 }
 
 #container{
@@ -28,7 +39,7 @@ h3{
 }
 
 button{
-    color: white;
+    /* color: white;
     border-radius: 5px;
     border: none;
     background: rgb(42, 123, 155);
@@ -36,8 +47,19 @@ button{
     font-size: 0.9rem;
     height: 1.5rem;
     min-width: 1.5rem;
-    align-content: right;
+    align-content: right; */
     /* margin-inline-start: 25px; */
+
+    background: linear-gradient(90deg, #00ff99, #ffff66, #ccff99);
+  border: none;
+  border-radius: 8px;
+  padding: 0.2rem 1.8rem;
+  color: #0d0d0d;
+  font-weight: bold;
+  cursor: pointer;
+  text-shadow: 0 0 2px #fff;
+  box-shadow: 0 0 8px #00ff99;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .board {
@@ -55,15 +77,20 @@ button{
     flex: 1;
     padding: 1rem;
     min-height: 200px;
+    /* transition: border-color 0.2s, background-color 0.2s; */
 
-    /* background-color: rgb(245, 245, 245, 30%); */
-
-    /* border: 2px solid #ccc; */
-    transition: border-color 0.2s, background-color 0.2s;
+      background-color: #0d0d0d;
+  border: 2px solid #FEFFA7;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  box-shadow: 0 0 10px #FEFFA7, 0 0 20px #FEFFA7 inset;
+  transition: box-shadow 0.3s ease;
 }
 
 .task {
-    color: white;
+    /* color: white;
     background:#2e2d34;
     border-radius: 5px;
     margin-bottom: 0.5rem;
@@ -71,13 +98,27 @@ button{
     cursor: move;
     font-weight: 100;
     text-transform: capitalize;
-    font-size: 0.9rem;
+    font-size: 0.9rem; */
+
+  background-color: #0d0d0d;
+  border: 2px solid #00FF9C;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+      color: #00FF9C;
+  text-shadow: 0 0 1px #00FF9C, 0 0 1px #00FF9C;
+
+  box-shadow: 0 0 10px #00FF9C, 0 0 20px #00FF9C inset;
+  transition: box-shadow 0.3s ease;
+
 
 }
 
 .task:hover {
-    background-color: #f4f4f4ff;    
-    box-shadow: 0 0 10px white;
+    /* background-color: #f4f4f4ff;    
+    box-shadow: 0 0 10px white; */
+      box-shadow: 0 0 20px #00FF9C, 0 0 40px #00FF9C inset;
 }
 
 /* .drop-zone {
@@ -86,5 +127,6 @@ button{
   } */
 
 .column.active {
-    background-color: rgb(245, 245, 245, 60%);
+    /* background-color: rgb(245, 245, 245, 60%); */
+          box-shadow: 0 0 50px #FEFFA7, 0 0 50px #FEFFA7 inset;
 }
