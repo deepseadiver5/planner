@@ -37,6 +37,10 @@ app.get('/tasks', async (req, res) => {
     res.render('index', {tasks: tasks});
 })
 
+app.get('/home', (req, res) => {
+    res.render('home');
+})
+
 app.get('/tasks/error', (req, res) => {
     throw new AppError('You got the wrong page buddy', 401);
 } )
@@ -51,11 +55,21 @@ app.get('/tasks/errorasync', async (req, res, next) => {
 
 // app.patch takes route from the app.js axios request which sends the task id and new status for the db to be updated with
 app.patch('/tasks/:id/edit', async (req, res) => {
-    const {id, updatedStatus} = req.body;
+    const {id, updatedStatusClean} = req.body;
     console.log(req.body);
-    const response = await Task.findByIdAndUpdate(id, {status: updatedStatus},{returnDocument: 'after'});
+    const response = await Task.findByIdAndUpdate(id, {status: updatedStatusClean},{returnDocument: 'after'});
+    // console.log(response);
+    res.status(200).json({ success: true});
+})
+
+app.patch('/tasks/:id/editName', async (req, res) => {
+    const {data} = req.body;
+    const inputValue = data.inputValue;
+    const id = data.id;
+    const response = await Task.findByIdAndUpdate(id, {name: inputValue}, {returnDocument: 'after'});
     console.log(response);
     res.status(200).json({ success: true});
+    // res.send(`hit edit name route ${req.body.data.id} ${req.body.data.inputValue}`);
 })
 
 app.delete('/tasks/delete', async (req, res) => {

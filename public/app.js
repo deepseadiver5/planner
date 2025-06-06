@@ -1,11 +1,7 @@
 const tasks = document.querySelectorAll('.task');
-const columns = document.querySelectorAll('.column');
+const taskHolders = document.querySelectorAll('.taskHolder');
 
 let draggedTask = null;
-
-// iterates over task items
-// adds eventlisteners for dragstat and dragend
-// simple change of style and assign task html element to variable
 
 tasks.forEach(task => {
     task.addEventListener("dragstart", () => {
@@ -19,59 +15,31 @@ tasks.forEach(task => {
     })
 });
 
-// iterates through .columns
-// adds eventlisteners for dragover, drop and dragleave
-// adds class for transition
-
-columns.forEach(column => {
-    column.addEventListener('dragover', e => {
-        column.classList.add("active");
+taskHolders.forEach(taskHolder => {
+    taskHolder.addEventListener('dragover', e => {
+        taskHolder.classList.add("active");
         e.preventDefault(); // necessary to allow drop
     });
-    column.addEventListener('drop', e => {
+    taskHolder.addEventListener('drop', e => {
         if(draggedTask) {
-            // send message to a server
-            // run an async function
-            // send id of task and data status of column
-            // use column.dataset.status
-            updateTaskStatus(draggedTask.dataset.id, column.dataset.status);
-            column.classList.remove("active");
-            column.appendChild(draggedTask)
+            updateTaskStatus(draggedTask.dataset.id, taskHolder.dataset.status);
+            taskHolder.classList.remove("active");
+            const addNewTask = taskHolder.querySelector('.add-new-task')
+            taskHolder.insertBefore(draggedTask, addNewTask)
         }
     });
-    column.addEventListener('dragleave', e => {
+    taskHolder.addEventListener('dragleave', e => {
         if(draggedTask) {
-            column.classList.remove("active");
+            
+            taskHolder.classList.remove("active");
         }
     });
 });
 
 async function updateTaskStatus(id, updatedStatus) {
-        const response = await axios.patch(`/tasks/${id}/edit`, {
+    updatedStatusClean = updatedStatus.trim();    
+    const response = await axios.patch(`/tasks/${id}/edit`, {
             id,
-            updatedStatus
+            updatedStatusClean
         });
-        console.log(response);
-    
 }
-
-// need a data structure to allow this to persist
-
-// need a navbar for different todo lists
-
-// add a button to each to do list - new item
-// creates new item in the data base
-// have different attributes in the list
-// attribs - start/end - colour picker from 6-7
-// checkboxes - filters???
-// attach an image - person - attach files / note
-// add a href web link
-// user accont - log in and out
-// different database for each user
-// assign task to a person
-// select different backgrounds - gradients / styles etc
-// different views
-// navbar
-
-// left hand sidebar - My lists Personal Home Books
-// filters for - today / next 7 days / all tasks

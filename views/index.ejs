@@ -4,18 +4,22 @@
         <% const statuses=['todo', 'doing' , 'done' ]; %>
 
             <% for (let status of statuses) { %>
-                <div class="col-4 px-5 column py-3" id="<%= status %>" data-status="<%= status %>">
-                    <div class="p-3 bg-body-secondary rounded bg-opacity-50">
+                <div class="col-4 px-5 column py-3">
+                    <div class="taskHolder p-3 bg-body-secondary rounded bg-opacity-50 " id="<%=status%>" data-status="
+                        <%= status %>">
                         <h4 class="fw-light text-dark letter-spacing-loose">
                             <%= status.charAt(0).toUpperCase() + status.slice(1) %>
                         </h4>
-
                         <% for (let task of tasks) { if (task.status===status) { %>
                             <%- include('./partials/taskCard', { task }) %>
                                 <% }} %>
-                        <h5 class="fw-light text-dark letter-spacing-tight">
-                            + Add a task
-                        </h5>
+                                    <% if(status=='todo' ) { %>
+                                        <button
+                                            class="btn btn-lg add-new-task fw-light text-dark letter-spacing-tight px-0"
+                                            id="createNewTask">
+                                            + Add a task
+                                        </button>
+                                        <% } %>
                     </div>
                 </div>
                 <% } %>

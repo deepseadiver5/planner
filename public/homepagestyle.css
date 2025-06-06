@@ -1,0 +1,144 @@
+/* .logo-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif; 
+  font-size: 4rem;
+  color: #FFD700;
+  letter-spacing: 2px;
+  text-shadow:
+    1px 1px 0 #000,
+    2px 2px 0 #333,
+    3px 3px 0 #666,
+    4px 4px 0 #999,
+    5px 5px 10px rgba(0, 0, 0, 0.5);
+  transform: perspective(500px) rotateX(5deg) rotateY(-10deg);
+  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.logo:hover {
+  transform: perspective(500px) rotateX(0deg) rotateY(0deg) scale(1.05);
+} */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nebula-bg {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #3c1361, #7b2cbf, #f0c808, #3c1361);
+  background-size: 400% 400%;
+  animation: backgroundShift 20s ease infinite;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 5rem;
+  color: #00ffe1;
+  text-shadow:
+    0 0 5px #00ffe1,
+    0 0 10px #00ffe1,
+    0 0 20px #00a1a1,
+    0 0 40px #007070;
+
+  animation: rotate3d 10s infinite linear;
+  transform-style: preserve-3d;
+  display: inline-block;
+} */
+
+/* @keyframes rotate3d {
+  0%   { transform: rotateX(0deg) rotateY(0deg); }
+  25%  { transform: rotateX(10deg) rotateY(-10deg); }
+  50%  { transform: rotateX(0deg) rotateY(-20deg); }
+  75%  { transform: rotateX(-10deg) rotateY(-10deg); }
+  100% { transform: rotateX(0deg) rotateY(0deg); }
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nebula-bg {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #3c1361, #7b2cbf, #f0c808, #3c1361);
+  background-size: 400% 400%;
+  animation: backgroundShift 20s ease infinite;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 5rem;
+  color: #00ffe1;
+  text-shadow:
+    0 0 5px #00ffe1,
+    0 0 10px #00ffe1,
+    0 0 20px #00a1a1,
+    0 0 40px #007070;
+  animation: rotate3d 10s infinite linear;
+  transform-style: preserve-3d;
+  display: inline-block;
+}
+
+.start-link {
+  display: block;
+  margin-top: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: #00ffe1;
+  text-decoration: none;
+  text-shadow:
+    0 0 5px #00ffe1,
+    0 0 10px #00ffe1,
+    0 0 20px #00a1a1,
+    0 0 40px #007070;
+  animation: rotate3d 10s infinite linear;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.start-link:hover {
+  transform: scale(1.1);
+}
+
+@keyframes rotate3d {
+  0%   { transform: rotateX(0deg) rotateY(0deg); }
+  25%  { transform: rotateX(10deg) rotateY(-10deg); }
+  50%  { transform: rotateX(0deg) rotateY(-20deg); }
+  75%  { transform: rotateX(-10deg) rotateY(-10deg); }
+  100% { transform: rotateX(0deg) rotateY(0deg); }
+}

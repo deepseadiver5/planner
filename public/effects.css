@@ -1,0 +1,35 @@
+.taskHolder{
+    transition: box-shadow 0.3s ease;
+}
+
+.taskHolder.active{
+    box-shadow: 0 0 15px rgba(255, 215, 0, 1); /* gold glow */
+}
+
+.task{
+    transition: border 0.3s ease;
+}
+
+.task:hover{
+    box-shadow: 0 0 8px rgba(255, 215, 0, 1); /* gold glow */
+}
+
+.task-input{
+    /* display: none; */
+    display: none;
+}
+
+.task-input.inputActive{
+    /* display: none; */
+    display: block;
+}
+
+.task-text{
+    /* display: none; */
+    display: block;
+}
+
+.task-text.inputActive{
+    /* display: none; */
+    display: none;
+}

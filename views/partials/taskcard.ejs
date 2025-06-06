@@ -1,11 +1,19 @@
 <div class="card task mb-3" draggable="true" data-id="<%= task.id %>">
   <div class="card-header d-flex justify-content-between">
-    <button class="btn btn-outline-dark btn-sm delete-btn">&#x1F5D1;</button>
-    <button class="btn btn-outline-dark btn-sm editbtn">&#8230;</button>
+    <button class="btn btn-outline-dark btn-sm delete-btn">&#10006;</button>
+    <button class="btn btn-outline-dark btn-sm edit-btn">&#9998;</button>
   </div>
   <div class="card-body">
-    <h6 class="card-title text-capitalize mb-0 letter-spacing-tight fw-light loose-line">
+    <h6 class="task-text card-title text-capitalize mb-0 letter-spacing-tight fw-light loose-line">
       <%= task.name %>
     </h6>
+    <form action="post" class="task-input editForm">
+    <input type="text" class="form-control" name="task-input" placeholder="<%= task.name %>" value="<%= task.name %>">
+    <!-- add a field for time to be completed by - add a calendar view -->
+    <div class="d-grid gap-2">
+    <button class="d-block btn btn-outline-dark btn-sm submit-btn submit mt-2">&#10003;</button>
+    </div>
+    </form>
+
   </div>
 </div>
