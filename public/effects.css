@@ -33,3 +33,23 @@
     /* display: none; */
     display: none;
 }
+
+.list-input{
+    /* display: none; */
+    display: none;
+}
+
+.list-input.inputActive{
+    /* display: none; */
+    display: block;
+}
+
+.list-text{
+    /* display: none; */
+    display: block;
+}
+
+.list-text.inputActive{
+    /* display: none; */
+    display: none;
+}

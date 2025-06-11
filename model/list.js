@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose;
 
-const listSchema = new mongoose.Schema({
+const listSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -14,6 +15,6 @@ const listSchema = new mongoose.Schema({
     // add note
 })
 
-const Task = mongoose.model('Task', taskSchema);
+const List = mongoose.model('List', listSchema);
 
-module.exports = Task;
+module.exports = List;

@@ -1,0 +1,40 @@
+Need to update the seed function for testing
+
+Validation - client-side
+Validation - backend (postman request tests)
+
+JOI Validation or similar
+
+Flash messages
+
+Security measures - HELMET, X-Site scripting etc
+
+Add Passport functionality for user accounts and password encryption and req.user
+
+Check use of middleware to delete references to tasks/lists in list/user dbs - see Campgrounds
+
+Use of functions within models - check how these were used in Campgrounds
+
+Add additional functionality - store an image with a task - use Cloudinary for this
+
+Add geolocation information
+
+Add time information
+
+Add filters / colour system / picker for users to be able to colour lists / tasks
+
+Add an avatar for users to personalise the navbar
+
+Add a home page
+
+Add a calendar view if tasks have a time to complete by
+
+Add a notes section to each task
+
+Update styles
+
+Refactor all code and routes to be RESTful
+
+Make tasks and list cards much smaller to enable more on screen
+
+Deploy

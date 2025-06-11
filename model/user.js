@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose;
+
+// add a field to store the ids of lists associated with the user
 
 const userSchema = new mongoose.Schema({
-    username: {
+    name: {
         type: String,
         required: true
     },
@@ -12,7 +15,11 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    lists: [{
+        type: Schema.Types.ObjectId,
+        ref: 'List'
+    }]
     // add target time
     // add filter - category
     // add note

@@ -1,5 +1,6 @@
 // const mongoose = require('mongoose');
 const Task = require('./model/task');
+const List = require('./model/list');
 
 // mongoose.connect('mongodb://127.0.0.1:27017/plannerApp')
 //     .then((() => console.log('Mongo Connected!')))
@@ -8,8 +9,8 @@ const Task = require('./model/task');
 //         console.log(e)
 //     });
 
-const seedDatabase = async function(){
-    await Task.insertMany([
+const seedDatabase = async function(listId){
+    const tasks = await Task.insertMany([
         { name: 'wash car', status: 'todo' },
         { name: 'finish cleaning shed', status: 'todo' },
         { name: 'take out rubbish', status: 'todo' },
@@ -21,12 +22,18 @@ const seedDatabase = async function(){
         { name: 'use massage voucher', status: 'done' },
         { name: 'book holiday with Baz and Nic', status: 'done' },
     ])
-        .then((res) => {
-            console.log('data seeded successfully');
-        })
-        .catch((e) => {
-            console.log(e);
-        });
+        // .then((res) => {
+        //     console.log('data seeded successfully');
+        // })
+        // .catch((e) => {
+        //     console.log(e);
+        // });
+
+    const taskIds = tasks.map(task => task._id);
+
+    await List.findByIdAndUpdate(listId,  {
+      $push: { tasks: { $each: taskIds } }
+    })
 }
 
 

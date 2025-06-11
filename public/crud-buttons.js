@@ -7,6 +7,8 @@ const deleteAll = document.querySelector('#deleteall');
 // const createNewTask = document.querySelector('#createNewTask');
 const createNewTaskBtn = document.querySelector('#createNewTask')
 
+const list = document.querySelector('#list');
+
 const delBtns = document.querySelectorAll('button.delete-btn');
 
 for (let btn of delBtns) {
@@ -39,7 +41,6 @@ for (let editForm of editForms) {
         const taskElement = editForm.closest('.task');
         const taskId = taskElement.dataset.id;
         const inputValue = editForm.elements['task-input'].value;
-        console.log(inputValue)
         editTask(taskId, taskElement, inputValue)
     })
 }
@@ -52,9 +53,7 @@ for (let editForm of editForms) {
 const deleteTask = async function (taskId, btnParent) {
     const response = await axios.delete('/tasks/delete', { data: { id: taskId } });
     // console.log(response);
-    console.log(btnParent);
     btnParent.remove();
-    console.log(response);
 }
 
 const displayEditTask = function (taskId, btnParent) {
@@ -72,32 +71,29 @@ const editTask = async function (taskId, btnParent, inputValue) {
     // update the task card name - or just refresh the page initially
     // call function that hides the edit panel and displays the name
 
-    const response = await axios.patch(`tasks/${taskId}/editName`,  { data: { id: taskId, inputValue: inputValue } })
+    const response = await axios.patch(`/tasks/${taskId}/editName`,  { data: { id: taskId, inputValue: inputValue } })
     console.log(response);
     console.log('edit task function called')
-    window.location.href = '/tasks';
+     window.location.href = `/tasks/${list.dataset.status}`;
 
 }
 
 seed.addEventListener('click', async function () {
     const response = await axios.get('/tasks/seed');
-    console.log(response);
     // instead of this, you could manually delete all the taks if the response comes back
-    window.location.href = '/tasks';
+    window.location.href = `/tasks/${list.dataset.status}`;
 })
 
 deleteAll.addEventListener('click', async function () {
     const response = await axios.get('/tasks/deleteall');
-    console.log(response);
     // instead of this, you could manually delete all the taks if the response comes back
-    window.location.href = '/tasks';
+    window.location.href = `/tasks/${list.dataset.status}`;
 })
 
 createNewTaskBtn.addEventListener('click', async function () {
-    const response = await axios.get('/tasks/new');
-    console.log(response);
+    const response = await axios.get(`/tasks/new/${list.dataset.status}`);
     // use the response object to create a new div without having to refresh the page
-    window.location.href = '/tasks';
+    window.location.href = `/tasks/${list.dataset.status}`;
 })
 
 

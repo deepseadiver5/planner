@@ -1,0 +1,32 @@
+<% layout('./layouts/boilerplate') -%>
+
+    <div class="row gx-4">
+        <h5 class="d-flex justify-content-center">Register New User</h5>
+
+        <div class=" col-4 px-5 py-3 offset-4">
+            <div class="p-3 bg-body-secondary rounded bg-opacity-50 ">
+                <h4 class="fw-light text-dark letter-spacing-loose">
+                    Enter User Details
+                </h4>
+                <!-- check this against the campgrounds app - route?  -->
+                <form action="/register" method="post">
+                    <div>
+                        <label for="username">Username</label>
+                        <input class="form-control" type="text" name="user[name]">
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input class="form-control" type="email" name="user[email]">
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" name="user[password]">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="d-block btn btn-outline-dark btn-sm submit mt-3">Create New User</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>

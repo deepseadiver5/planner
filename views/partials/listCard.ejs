@@ -1,0 +1,28 @@
+<div class="card list mb-3" data-id="<%= list.id %>">
+    <div class="card-header d-flex justify-content-between">
+        <button class="btn btn-outline-dark btn-sm deleteList-btn">&#10006;</button>
+        <button class="btn btn-outline-dark btn-sm edit-btn">&#9998;</button>
+    </div>
+    <div class="card-body">
+        <h6 class="list-text card-title text-capitalize mb-0 letter-spacing-tight fw-light loose-line">
+            <a class="link-dark link-underline link-underline-opacity-0" href="/tasks/<%= list._id %>">
+                <div class="d-grid gap-2">
+                    <button class="text-capitalize d-block btn btn-outline-dark btn-sm mt-2">
+                        <%= list.name %>
+                    </button>
+                </div>
+            </a>
+        </h6>
+
+        <form action="post" class="list-input editForm">
+            <input type="text" class="form-control" name="list-input" placeholder="<%= list.name %>"
+                value="<%= list.name %>">
+            <!-- add a field for time to be completed by - add a calendar view -->
+            <div class="d-grid gap-2">
+                <button class="d-block btn btn-outline-dark btn-sm submit-btn submit mt-2">&#10003;</button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
