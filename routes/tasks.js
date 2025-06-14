@@ -6,7 +6,16 @@ const List = require('../model/list');
 
 const seedDatabase = require('../seed');
 
+const { taskSchema } = require('../schemas')
+const AppError = require('../apperror');
+
 // { mergeParams: true } - use this to pass through id from router
+
+function validateList(req, res, next) {
+    const { error } = taskSchema.validate(req.body);
+    if (error) throw new AppError(error.details[0].message, 400);
+    next()
+}
 
 router.patch('/:id/edit', async (req, res) => {
     const { id, updatedStatusClean } = req.body;
@@ -14,11 +23,9 @@ router.patch('/:id/edit', async (req, res) => {
     res.status(200).json({ success: true });
 })
 
-router.patch('/:id/editName', async (req, res) => {
-    const { data } = req.body;
-    const inputValue = data.inputValue;
-    const id = data.id;
-    const response = await Task.findByIdAndUpdate(id, { name: inputValue }, { returnDocument: 'after' });
+router.patch('/editName', validateList, async (req, res) => {
+    const { id, name } = req.body;
+    const response = await Task.findByIdAndUpdate(id, { name: name }, { returnDocument: 'after' });
     res.status(200).json({ success: true });
 })
 

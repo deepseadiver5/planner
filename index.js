@@ -4,6 +4,7 @@ const AppError = require('./apperror');
 const path = require('path');
 const seedDatabase = require(path.join(__dirname, 'seed'));
 const session = require('express-session');
+const flash = require('connect-flash')
 // create a session
 
 const engine = require('ejs-mate');
@@ -26,12 +27,17 @@ mongoose.connect('mongodb://127.0.0.1:27017/plannerApp')
         console.log(e)
     });
 
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const taskRoutes = require('./routes/tasks')
 const listRoutes = require('./routes/lists')
 const userRoutes = require('./routes/users')
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
+
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -47,6 +53,8 @@ sessionConfig = {
 
 app.use(session(sessionConfig));
 
+app.use(flash())
+
 app.use(async(req, res, next) => {
     if(req.session.userId){
         req.user = await User.findById(req.session.userId);
@@ -58,12 +66,21 @@ app.use(async(req, res, next) => {
     next();
 })
 
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    next()
+})
+
 app.use('/tasks', taskRoutes);
 app.use('/lists', listRoutes);
 app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
     res.render('home');
+})
+
+app.get('/workbenchtest', (req, res,) => {
+    res.render('workbenchtest')
 })
 
 app.use((err, req, res, next) => {

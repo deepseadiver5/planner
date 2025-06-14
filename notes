@@ -1,11 +1,19 @@
 Need to update the seed function for testing
 
-Validation - client-side
-Validation - backend (postman request tests)
+IDEA FOR DRAG AND DROP - MULTIPLE LISTS - WORK - HOBBIES - SOCIAL - CAN REARRANGE - DRAG AND DROP FROM ONE TO ANOTHER - SIMPLE TICK AND STRIKETHROUGH TO SHOW AS DON
 
-JOI Validation or similar
+USE AMIGA WORKBENCH CSS STYLE
 
-Flash messages
+Validation - client-side - DONE
+Validation - backend (postman request tests) - DONE
+
+JOI Validation or similar - DONE
+
+Flash messages - DONE
+
+DRY - can is use js classes for this app at all to make it cleaner
+
+Proper error handling (an error page that uses bootstrap)
 
 Security measures - HELMET, X-Site scripting etc
 

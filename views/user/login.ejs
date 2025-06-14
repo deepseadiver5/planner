@@ -9,15 +9,28 @@
                     Enter User Details
                 </h4>
                 <!-- check this against the campgrounds app - route?  -->
-                <form action="/login" method="post">
+                <form action="/login" method="post" class="needs-validation" novalidate>
                     <div>
                         <label for="username">Username</label>
-                        <input class="form-control" type="text" name="user[name]">
+                        <input class="form-control" type="text" name="user[name]" placeholder="Enter user name" required>
+                          <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Looks bad!
+                        </div>
                     </div>
                     <div>
                         <label for="password">Password</label>
-                        <input class="form-control" type="password" name="user[password]">
+                        <input class="form-control" type="password" name="user[password]" placeholder="Enter password" required>
+                          <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Looks bad!
+                        </div>
                     </div>
+                    
                     <div class="d-grid gap-2">
                         <button class="d-block btn btn-outline-dark btn-sm submit mt-3">Log in</button>
                     </div>
@@ -26,3 +39,4 @@
             </div>
         </div>
     </div>
+

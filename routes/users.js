@@ -5,6 +5,17 @@ const Task = require('../model/task');
 const List = require('../model/list');
 const User = require('../model/user');
 
+const {userSchema} = require('../schemas')
+const AppError = require('../apperror');
+    
+// will the apperror throw given the middleware for this is in index.js
+
+function validateUser (req, res, next) {
+    const {error} = userSchema.validate(req.body);
+    if(error) throw new AppError(error.details[0].message, 400);
+    next()
+}
+
 router.get('/register', (req, res) => {
     res.render('user/register');
 })
@@ -26,6 +37,7 @@ router.post('/login', async (req, res) => {
         if (user.password == response.password) {
             req.session.userId = response._id;
             req.user = response;
+            req.flash('success', 'Successfully logged in')
             res.redirect('/lists')
         }
         else res.send('password incorrect')
@@ -39,6 +51,7 @@ router.post('/login', async (req, res) => {
 // add a route to log out of the current user - add code to hide the register and login links if user is logged in and vice versa
 
 router.get('/logout', (req, res) => {
+    
     req.session.destroy(err => {
         if (err) {
             return res.send('there was an error');
@@ -49,7 +62,7 @@ router.get('/logout', (req, res) => {
 
 // route to create a new user
 
-router.post('/register', async (req, res) => {
+router.post('/register', validateUser, async (req, res) => {
     const { user } = req.body;
     const newUser = await User.insertOne({ name: user.name, email: user.email, password: user.password })
     // need to validate the username - check it doesn't already exist
@@ -59,6 +72,7 @@ router.post('/register', async (req, res) => {
     // res.redirect('/lists');
     req.session.userId = newUser._id;
     req.user = newUser;
+    req.flash('success', 'New user successfully created')
     res.redirect('/lists')
 })
 

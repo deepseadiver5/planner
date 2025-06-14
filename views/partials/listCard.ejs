@@ -14,9 +14,15 @@
             </a>
         </h6>
 
-        <form action="post" class="list-input editForm">
-            <input type="text" class="form-control" name="list-input" placeholder="<%= list.name %>"
-                value="<%= list.name %>">
+        <form action="post" class="list-input editForm needs-validation" novalidate>
+            <input type="text" class="form-control" name="list-input" 
+               placeholder="Enter new list name" value="<%= list.name %>" minlength="1" maxlength="30" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Looks bad!
+            </div>
             <!-- add a field for time to be completed by - add a calendar view -->
             <div class="d-grid gap-2">
                 <button class="d-block btn btn-outline-dark btn-sm submit-btn submit mt-2">&#10003;</button>

@@ -9,18 +9,36 @@
                     Enter User Details
                 </h4>
                 <!-- check this against the campgrounds app - route?  -->
-                <form action="/register" method="post">
+                <form action="/register" method="post" class="needs-validation" novalidate>
                     <div>
                         <label for="username">Username</label>
-                        <input class="form-control" type="text" name="user[name]">
+                        <input class="form-control" type="text" name="user[name]" required maxlength="30">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Looks bad!
+                        </div>
                     </div>
                     <div>
                         <label for="email">Email</label>
-                        <input class="form-control" type="email" name="user[email]">
+                        <input class="form-control" type="email" name="user[email]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Looks bad!
+                        </div>
                     </div>
                     <div>
                         <label for="password">Password</label>
-                        <input class="form-control" type="password" name="user[password]">
+                        <input class="form-control" type="password" name="user[password]" required minlength="8" maxlength="30">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Looks bad!
+                        </div>
                     </div>
                     <div class="d-grid gap-2">
                         <button class="d-block btn btn-outline-dark btn-sm submit mt-3">Create New User</button>
@@ -30,3 +48,4 @@
             </div>
         </div>
     </div>
+      

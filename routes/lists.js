@@ -5,6 +5,15 @@ const List = require('../model/list');
 const User = require('../model/user');
 const Task = require('../model/task');
 
+const {listSchema} = require('../schemas')
+const AppError = require('../apperror');
+
+function validateList (req, res, next) {
+    const {error} = listSchema.validate(req.body);
+    if(error) throw new AppError(error.details[0].message, 400);
+    next()
+}
+
 // { mergeParams: true } - use this to pass through id from router
 
 router.get('/', async (req, res) => {
@@ -45,11 +54,10 @@ router.delete('/', async (req, res) => {
 
 // edit list - edit the name of the list only
 
-router.patch('/', async (req, res) => {
-    const { data } = req.body;
-    const inputValue = data.inputValue;
-    const id = data.id;
-    const response = await List.findByIdAndUpdate(id, { name: inputValue }, { returnDocument: 'after' });
+router.patch('/', validateList, async (req, res) => {
+    const { id, name } = req.body;
+
+    const response = await List.findByIdAndUpdate(id, { name: name }, { returnDocument: 'after' });
     res.json({ redirectTo: `/lists` });
 })
 

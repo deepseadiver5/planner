@@ -43,3 +43,4 @@ async function updateTaskStatus(id, updatedStatus) {
             updatedStatusClean
         });
 }
+

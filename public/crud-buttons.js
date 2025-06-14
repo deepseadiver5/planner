@@ -38,6 +38,11 @@ for (let editForm of editForms) {
     // addEventListener to each form to prevent default behaviour and 
     editForm.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        if (!editForm.checkValidity()) {
+            editForm.classList.add('was-validated');
+            return;
+        }
         const taskElement = editForm.closest('.task');
         const taskId = taskElement.dataset.id;
         const inputValue = editForm.elements['task-input'].value;
@@ -71,10 +76,10 @@ const editTask = async function (taskId, btnParent, inputValue) {
     // update the task card name - or just refresh the page initially
     // call function that hides the edit panel and displays the name
 
-    const response = await axios.patch(`/tasks/${taskId}/editName`,  { data: { id: taskId, inputValue: inputValue } })
+    const response = await axios.patch(`/tasks/editName`, { id: taskId, name: inputValue })
     console.log(response);
     console.log('edit task function called')
-     window.location.href = `/tasks/${list.dataset.status}`;
+    window.location.href = `/tasks/${list.dataset.status}`;
 
 }
 

@@ -7,9 +7,15 @@
     <h6 class="task-text card-title text-capitalize mb-0 letter-spacing-tight fw-light loose-line">
       <%= task.name %>
     </h6>
-    <form action="post" class="task-input editForm">
-    <input type="text" class="form-control" name="task-input" placeholder="<%= task.name %>" value="<%= task.name %>">
+    <form action="post" class="task-input editForm needs-validation" novalidate>
+    <input type="text" class="form-control" name="task-input" placeholder="Enter new task" value="<%= task.name %>" minlength="1" maxlength="30" required>
     <!-- add a field for time to be completed by - add a calendar view -->
+     <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Looks bad!
+            </div>
     <div class="d-grid gap-2">
     <button class="d-block btn btn-outline-dark btn-sm submit-btn submit mt-2">&#10003;</button>
     </div>

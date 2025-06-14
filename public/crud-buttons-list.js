@@ -1,22 +1,24 @@
 const createNewListBtn = document.querySelector('#createNewListBtn')
 
-createNewListBtn.addEventListener('click', async function ()  {
+createNewListBtn.addEventListener('click', async function () {
     const response = await axios.get('/lists/new');
     window.location.href = response.data.redirectTo;
 })
 
 const deleteListBtns = document.querySelectorAll('button.deleteList-btn')
 
-for(let btn of deleteListBtns) {
+for (let btn of deleteListBtns) {
     const listElement = btn.closest('.list');
     const listId = listElement.dataset.id;
     btn.addEventListener('click', () => deleteList(listId, listElement));
 }
 
-const deleteList = async function(listId, listElement) {
-    const response = await axios.delete('/lists', { data: {
-        id: listId
-    }});
+const deleteList = async function (listId, listElement) {
+    const response = await axios.delete('/lists', {
+        data: {
+            id: listId
+        }
+    });
     listElement.remove();
 }
 
@@ -43,6 +45,12 @@ for (let editForm of editForms) {
     // addEventListener to each form to prevent default behaviour and 
     editForm.addEventListener('submit', function (e) {
         e.preventDefault();
+
+        if (!editForm.checkValidity()) {
+            editForm.classList.add('was-validated');
+            return;
+        }
+
         const listElement = editForm.closest('.list');
         const listId = listElement.dataset.id;
         const inputValue = editForm.elements['list-input'].value;
@@ -57,8 +65,12 @@ const editList = async function (listId, listElement, inputValue) {
     // update the task card name - or just refresh the page initially
     // call function that hides the edit panel and displays the name
 
-    const response = await axios.patch(`/lists`,  { data: { id: listId, inputValue: inputValue } })
 
- window.location.href = response.data.redirectTo;
+    const response = await axios.patch(`/lists`, {
+        id: listId,
+        name: inputValue
+    } )
+
+    window.location.href = response.data.redirectTo;
 
 }
