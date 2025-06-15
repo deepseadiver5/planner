@@ -79,8 +79,8 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
-app.get('/workbenchtest', (req, res,) => {
-    res.render('workbenchtest')
+app.get('/workbench', (req, res,) => {
+    res.render('workbench')
 })
 
 app.use((err, req, res, next) => {
