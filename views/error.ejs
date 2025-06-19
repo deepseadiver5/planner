@@ -1,0 +1,12 @@
+
+<% layout('layouts/boilerplate') %>
+
+<div class="mt-3 alert alert-danger" role="alert">
+    <h4 class="alert-heading">Something went wrong!</h4>
+    <p>Status: <%= error.status %> - <%= statusRef %></p>
+    <hr>
+    <p class="mb-0">Error message: <%= error.message %></p>
+    <% if(process.env.NODE_ENV !== "production"){ %>
+    <p class="mb-0">Stack trace: <%= error.stack %></p>
+    <% } %>
+  </div>

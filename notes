@@ -12,6 +12,8 @@ JOI Validation or similar - DONE
 
 Flash messages - DONE
 
+Passport - add functionality for user account or BCRYPT for password encryption and authentication
+
 DRY - can is use js classes for this app at all to make it cleaner
 
 Proper error handling (an error page that uses bootstrap)

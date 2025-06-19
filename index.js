@@ -7,6 +7,8 @@ const session = require('express-session');
 const flash = require('connect-flash')
 // create a session
 
+const { STATUS_CODES } = require('http');
+
 const engine = require('ejs-mate');
 
 console.log(path.join(__dirname, 'seed'));
@@ -68,6 +70,7 @@ app.use(async(req, res, next) => {
 
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next()
 })
 
@@ -79,13 +82,20 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
-app.get('/workbench', (req, res,) => {
-    res.render('workbench')
+app.all(/(.*)/, (req, res, next) => {
+    next(new AppError('Page not found', 404));
 })
 
 app.use((err, req, res, next) => {
-    const { status = 500, message = 'Something went wrong' } = err;
-    res.status(status).send(message);
+    let { message = "Oh heck, something went wrong", status = 500 } = err;
+    if (err.name === 'CastError') {
+        err.message = 'Invald ID format';
+    }
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+    return res.status(400).json({ message: 'Invalid JSON' });
+    }
+    if (!err.message) err.message = "Something went wrong"
+    res.status(status).render('error', { error: err, statusRef: STATUS_CODES[status] });
 })
 
 app.listen(3000, () => {
